@@ -3,7 +3,6 @@
     "version": "1.0.0",
     "description": "Anime Streaming, Discovery API made with Cheerio and Express. Uses data from Gogoanime",
     "main": "lib/anime_parser.js",
-    "type": "module",
     "types": "lib/types/index.d.ts",
     "scripts": {
         "start": "node index.js",
