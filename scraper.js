@@ -20,14 +20,14 @@ export const home = async ({ page }) => {
   try {
     let list = [];
 
-    const bestVideos = await axios.get(`https://www.hentaicity.com/`);
+    const bestVideos = await axios.get(`https://www.hentaicity.com/`)
     const $ = cheerio.load(bestVideos.data);
-    const newReleases =  $('div.thumb-list.title-spacing').html().replaceAll("https://www.hentaicity.com", "");
-    const manga = $('div.manga').html().replaceAll("https://www.hentaicity.com", "")
-    const recent = $('div.recent').html().replaceAll("https://www.hentaicity.com", "")
+    const newReleases =  $('div.thumb-list.title-spacing').html().replaceAll(/click\/\d+-\d+\//g, "").replaceAll("https://www.hentaicity.com", "");
+    const manga = $('div.manga').html().replaceAll(/click\/\d+-\d+\//g, "").replaceAll("https://www.hentaicity.com", "");
+    const recent = $('div.recent').html().replaceAll(/click\/\d+-\d+\//g, "").replaceAll("https://www.hentaicity.com", "");
     $('div.thumb-list.title-spacing > div.outer-item:not(._767p)').each((i, el) => {
       list.push({
-        id : $(el).html().replaceAll("https://www.hentaicity.com", "")
+        id : $(el).html().replaceAll(/click\/\d+-\d+\//g, "").replaceAll("https://www.hentaicity.com", "")
     });
     });
     return {
@@ -81,17 +81,17 @@ export const videoLib = async ({ id }) => {
     const totalFiles = $('div.total_files').text()
      $('div.thumb-list.title-spacing > div.outer-item-pics:not(._767p)').each((i, el) => {
       list.push({
-        id : $(el).html().replaceAll("https://www.hentaicity.com", "")
+        id : $(el).html().replaceAll(/click\/\d+-\d+\//g, "").replaceAll("https://www.hentaicity.com", "")
     });
     });
      $('div.thumb-list.title-spacing > div.outer-item:not(._767p)').each((i, el) => {
       list.push({
-        id : $(el).html().replaceAll("https://www.hentaicity.com", "")
+        id : $(el).html().replaceAll(/click\/\d+-\d+\//g, "").replaceAll("https://www.hentaicity.com", "")
     });
     });
     $('div.pulldown').each((i, el) => {
       filter.push({
-        id : $(el).html().replaceAll("https://www.hentaicity.com", "")
+        id : $(el).html().replaceAll(/click\/\d+-\d+\//g, "").replaceAll("https://www.hentaicity.com", "")
     });
     });
     const pagination1 = $('div.pagination._767p').html().replaceAll("https://www.hentaicity.com", "")
